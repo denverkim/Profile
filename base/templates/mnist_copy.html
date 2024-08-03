@@ -1,0 +1,75 @@
+<!-- 이미지 로딩 다른 방법으로 시도하는 중-->
+{% include 'navbar.html' %}
+{% load static %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>MNIST 숫자 분류</title>
+<style>
+    h1 {
+        padding: 30px;
+        font-weight: 600 !important;
+        font-size: 3.2em;
+    }
+
+    .well {
+        width: 50%;
+    }
+</style>
+<section class="mnist">
+    <div class="container">
+        <div class="col-lg-12">
+            <center>
+                <h1>CNN 모델을 이용한 숫자 인식 프로젝트</h1>
+                <p>이미지를 올려주세요</p>
+            </center>
+        </div>
+        <div class="col-lg-12">
+            <center>
+                <div class="well">
+                    <form action="" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div id="selectedBanner"></div>
+                        <br>
+                        <input type="file" name="image" id="img" accept="image/*" />
+                        <br>
+                        <input type="submit" class="btn btn-success" value="숫자 인식하기">
+                    </form>
+                </div>
+            </center>
+        </div>
+        {% if input %}
+        <script>
+            let img = document.getElementById("img");
+            let display = document.getElementById("selectBanner");
+            img.onchange = function () {
+                let input = this.files[0];
+                let text;
+                if (input) {
+                    text = '<img src="' + img.value + '" alt="Category Image" height="200px" width="200px">';
+                }
+                display.innerHTML = text;
+            }
+
+
+            //  '<img src="' +
+            //     MEDIA_ROOT + '/images/' + image_name
+            // "alt='Category Image' height='200px' width='200px'>"
+        </script>
+        {% endif %}
+        {% if letter %}
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="padding-top:30px;">
+
+                <h4>업로드한 손글씨는 <mark style="background-color:#04aa6d;color:white;border-radius:5px">{{letter}}</mark>
+                    입니다.
+                </h4>
+                <h4>Probabilities : {{probs}}</h4>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        {% endif %}

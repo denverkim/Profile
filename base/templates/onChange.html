@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <style>
+        .uploadBox {
+            position: absolute;
+            background: lightblue;
+            width: 300px;
+            height: 200px;
+        }
+
+        .imageUploadInput {
+            display: none;
+        }
+    </style>
+</head>
+<!-- https://www.w3schools.com/jsref/dom_obj_image.asp -->
+<!-- https://hianna.tistory.com/411 -->
+<!-- https://medium.com/quangtn0018/javascript-onchange-file-input-17fea1905363 -->
+
+<body>
+    <form id="fileUploadForm" enctype="multipart/form-data">
+        <label for="imageUpload" class="uploadBox">
+            <p id="uploadMsg">Filename will appear here after file has been selected</p>
+            <input id="imageUpload" class="imageUploadInput" type="file" name="image" accept="image/*">
+        </label>
+    </form>
+    <script>
+        let imageUpload = document.getElementById("imageUpload");
+        let uploadMsg = document.getElementById("uploadMsg");
+        // display file name if file has been selected
+        imageUpload.onchange = function () {
+            let input = this.files[0];
+            let text;
+            if (input) {
+                //process input
+                text = imageUpload.value;
+            } else {
+                text = "Please select a file";
+            }
+            uploadMsg.innerHTML = text;
+        };
+    </script>
+</body>
+
+</html>
