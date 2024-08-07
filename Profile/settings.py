@@ -27,7 +27,7 @@ DEBUG = True
 
 # DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = [".ngrok-free.app", "127.0.0.1:8000"]
+ALLOWED_HOSTS = [".ngrok-free.app", "127.0.0.1"]
 CSRF_TRUSTED_ORIGINS = ["https://2cd3-124-199-5-69.ngrok-free.app"]
 
 # Application definition

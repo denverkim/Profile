@@ -171,3 +171,7 @@ def cifar10(request):
         # probs = pred[0][0][2]
 
         return render(request, "cifar10.html", {"objs": objs, "probs": probs})
+
+
+def ocr(request):
+    return render(request, "ocr.html")
